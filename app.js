@@ -1,6 +1,8 @@
 const express = require('express')
 const UserRouter = require('./routes/userRouter')
 const houseRouter = require('./routes/houseRouter')
+const globalErrorHandling = require('./controllers/errorController')
+const AppError = require('./utils/appError')
 
 const app = express()
 //Middlewares
@@ -14,6 +16,12 @@ app.get('/',(req,res)=>{
         message: "Home Page"
     })
 })
+
+app.all('*', (req, res, next) => {
+    next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
+});
+
+app.use(globalErrorHandling);
 
 
 

@@ -1,35 +1,23 @@
 const User = require('../models/userModel')
+const catchAsync = require('../utils/catchAsync')
+const AppError = require('../utils/appError')
 
-const getAllUsers = async(req,res)=>{
-    try{
+const getAllUsers = catchAsync(async(req,res)=>{
         const users = await User.find()
         res.status(200).json({
             status:'success',
             data: users
-        })
-    }catch(err){
-        res.status(400).json({ success: false, message: err.message });
-    }
-}
-const getUserById = async(req,res)=>{
-    try {
-        const user = await User.findById(req.params.id).select(['-password','-__v']);
-    
-        if (!user) {
-          return res.status(404).json({ success: false, message: 'User not found' });
-        }
-    
-        res.status(200).json({
-          success: true,
-          data: user
-        });
-      } catch (error) {
-        res.status(500).json({ success: false, message: error.message });
-      }
-}
-const createUser = async(req,res)=>{
-    try{
-
+        }) 
+})
+const getUserById = catchAsync(async(req,res,next)=>{
+    const user = await User.findById(req.params.id).select(['-password','-__v']);
+    if(!user) return next(new AppError('No user found',404))
+    res.status(200).json({
+        success: true,
+        data: user
+    });
+})
+const createUser = catchAsync(async(req,res)=>{
         const newUser = new User({
             name : req.body.name,
             email : req.body.email,
@@ -42,8 +30,6 @@ const createUser = async(req,res)=>{
             status:'success',
             data: newUser
         })
-    }catch(err){
         res.status(400).json({ success: false, message: err.message });
-    }
-}
+})
 module.exports = {getAllUsers,getUserById,createUser}
