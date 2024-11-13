@@ -6,7 +6,7 @@ block content
       .card-body
         h2.card-title.text-center.mb-4 Login
         //- The action attribute is set to /users/login to submit to the correct endpoint
-        form(method="POST" action="/users/login")
+        form.form--login
           .form-group
             label(for="email") Email
             input#email.form-control(type="email" name="email" required placeholder="Enter your email")

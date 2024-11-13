@@ -1,5 +1,6 @@
 const express = require('express')
-const path = require('path')
+const path = require('path');
+const cookieParser = require('cookie-parser');
 const UserRouter = require('./routes/userRouter')
 const houseRouter = require('./routes/houseRouter')
 const viewRouter = require('./routes/viewRouter')
@@ -15,6 +16,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(express.json()); // Parses JSON data
 app.use(express.urlencoded({ extended: true })); // Parses form data
+app.use(cookieParser());
 
 //Routes
 app.use('/', viewRouter);
