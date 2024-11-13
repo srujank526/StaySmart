@@ -1,33 +1,32 @@
 const mongoose = require('mongoose');
+const validator = require('validator');
 const bcrypt = require('bcrypt');
 
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true,
-    trim: true
+    required: [true, 'Please tell us your name'],
   },
   email: {
     type: String,
-    required: true,
+    required: [true, 'Please provide your email'],
     unique: true,
     lowercase: true,
-    trim: true
+    validate: [validator.isEmail, 'Please provide a valid email'],
   },
   password: {
     type: String,
-    required: true,
-    minlength: 8
+    required: [true, 'Please provide a password'],
+    minlength: [8, 'Password must be at least 8 characters long'],
+    select: false, // Ensures password is not returned in any query by default
   },
-  passwordChangedAt: {
-    type: Date
-  },
+  passwordChangedAt: Date,
   role: {
     type: String,
-    enum: ['admin', 'user'],
-    default: 'user'
-  }
-},{ versionKey: false });
+    enum: ['user', 'admin'],
+    default: 'user',
+  },
+});
 
 userSchema.pre('save', async function (next) {
   // Only run this function if password was modified (or is new)

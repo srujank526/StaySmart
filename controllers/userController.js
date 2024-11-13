@@ -6,6 +6,7 @@ const getAllUsers = catchAsync(async(req,res)=>{
         const users = await User.find()
         res.status(200).json({
             status:'success',
+            results: users.length,
             data: users
         }) 
 })
@@ -14,6 +15,7 @@ const getUserById = catchAsync(async(req,res,next)=>{
     if(!user) return next(new AppError('No user found',404))
     res.status(200).json({
         success: true,
+        results: 1,
         data: user
     });
 })

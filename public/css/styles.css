@@ -1,0 +1,26 @@
+/* Softer gradient background */
+header {
+  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+}
+header:hover {
+  background-color: #f0f4f8; /* Very light background on hover */
+}
+.btn {
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.btn-primary {
+  background-color: #4a90e2; /* Muted blue color */
+  border: none;
+}
+.btn-secondary {
+  background-color: #6c757d; /* Soft gray color */
+  border: none;
+}
+.btn:hover {
+  transform: scale(1.05); /* Slight scale effect */
+}
+.dropdown-menu {
+  min-width: 150px; /* Set a minimum width for dropdown */
+}

@@ -64,6 +64,12 @@ exports.login = catchAsync(async(req,res,next)=>{
     // 3) If everything ok, send token to client
     const token = signToken(user._id);
 
+    // set token in a cookie
+    res.cookie('jwt', token, {
+      expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000), // 90 days
+      httpOnly: true,
+  });
+
     user.password = undefined
     res.status(200).json({
       status: 'success',
@@ -92,3 +98,28 @@ exports.signup = catchAsync(async (req, res, next) => {
     }
   });
   });
+
+  exports.isLoggedIn = async (req, res, next) => {
+    if (req.cookies && req.cookies.jwt) {
+      try {
+        // 1) verify token
+        const decoded = await promisify(jwt.verify)(
+          req.cookies.jwt,
+          process.env.JWT_SECRET
+        );
+  
+        // 2) Check if user still exists
+        const currentUser = await User.findById(decoded.id);
+        if (!currentUser) {
+          return next();
+        }
+  
+        // THERE IS A LOGGED IN USER
+        res.locals.user = currentUser;
+        return next();
+      } catch (err) {
+        return next();
+      }
+    }
+    next();
+  };

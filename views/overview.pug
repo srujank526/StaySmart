@@ -1,0 +1,19 @@
+extends layout
+
+mixin houseCard(house)
+  .col-md-4.mb-4
+    .card
+      img.card-img-top(src=house.image || '/images/default_house.jpg', alt="House Image")
+      .card-body
+        h5.card-title= house.title
+        p.card-text= house.description
+        p.card-text.text-muted $#{house.rentAmount} / month
+        a.btn.btn-primary(href=`/houses/${house._id}`) View Details
+
+block content
+  .container.mt-5
+    h1.text-center Available Houses
+
+    .row
+      each house in houses
+        +houseCard(house)

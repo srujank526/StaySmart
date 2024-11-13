@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  .container.d-flex.justify-content-center.align-items-center.min-vh-100
+    .card(style="width: 400px;")
+      .card-body
+        h2.card-title.text-center.mb-4 Login
+        //- The action attribute is set to /users/login to submit to the correct endpoint
+        form(method="POST" action="/users/login")
+          .form-group
+            label(for="email") Email
+            input#email.form-control(type="email" name="email" required placeholder="Enter your email")
+          .form-group
+            label(for="password") Password
+            input#password.form-control(type="password" name="password" required placeholder="Enter your password")
+          button.btn.btn-primary.btn-block(type="submit") Login
+          p.text-center.mt-3
+            | Don't have an account?
+            a(href="/signup") Sign up
