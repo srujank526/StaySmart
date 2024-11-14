@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  main.main
+    .error
+      .error__title
+        h2.heading-secondary.heading-secondary--error Uh oh! Something went wrong!
+      .error__msg= msg
+
+      div 
+        a.btn.btn-primary(href="/", style="margin-right: 8px;") Go Home
+        a.btn.btn-secondary(href="javascript:history.back()") Go Back

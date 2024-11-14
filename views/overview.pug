@@ -7,8 +7,8 @@ mixin houseCard(house)
       .card-body
         h5.card-title= house.title
         p.card-text= house.description
-        p.card-text.text-muted $#{house.rentAmount} / month
-        a.btn.btn-primary(href=`/houses/${house._id}`) View Details
+        p.card-text.text-muted ₹#{house.rentAmount} / month
+        a.btn.btn-primary(href=`/house/${house._id}`) View Details
 
 block content
   .container.mt-5

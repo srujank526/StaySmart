@@ -20,8 +20,8 @@ app.use(cookieParser());
 
 //Routes
 app.use('/', viewRouter);
-app.use('/users',UserRouter)
-app.use('/house',houseRouter)
+app.use('/api/v1/users',UserRouter)
+app.use('/api/v1/house',houseRouter)
 
 
 

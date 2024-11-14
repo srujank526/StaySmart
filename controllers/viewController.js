@@ -18,3 +18,17 @@ exports.getOverview = catchAsync(async (req, res, next) => {
       title: 'Log into your account'
     });
   };
+
+exports.getHouseDetails = catchAsync(async (req, res, next) => {
+  const { houseId } = req.params;  // Retrieve the houseId from URL parameters
+  const house = await House.findById(houseId);  // Fetch house details by ID
+
+  if (!house) {
+    return next(new AppError('No house found with that ID', 404));
+  }
+
+  res.status(200).render('houseDetails', {
+    title: house.title,
+    house
+  });
+});

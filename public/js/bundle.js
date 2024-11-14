@@ -1764,7 +1764,7 @@ var login = exports.login = /*#__PURE__*/function () {
             password: password
           };
           _context.next = 4;
-          return _axios.default.post('http://localhost:8000/users/login', data);
+          return _axios.default.post('http://localhost:8000/api/v1/users/login', data);
         case 4:
           res = _context.sent;
           if (res.data.status === 'success') {
@@ -1799,7 +1799,7 @@ var logout = exports.logout = /*#__PURE__*/function () {
           _context2.next = 3;
           return (0, _axios.default)({
             method: 'GET',
-            url: 'http://127.0.0.1:3000/api/users/logout'
+            url: 'http://127.0.0.1:8000/api/v1/users/logout'
           });
         case 3:
           res = _context2.sent;
@@ -1824,13 +1824,22 @@ var logout = exports.logout = /*#__PURE__*/function () {
 "use strict";
 
 var _login = require("./login");
+var logoUrl = document.querySelector('.logoUrl');
 var loginForm = document.querySelector('.form--login');
-if (loginForm) loginForm.addEventListener('submit', function (e) {
-  e.preventDefault();
-  var email = document.getElementById('email').value;
-  var password = document.getElementById('password').value;
-  (0, _login.login)(email, password);
-});
+if (logoUrl) {
+  logoUrl.style.cursor = 'pointer';
+  logoUrl.addEventListener('click', function () {
+    location.assign('/');
+  });
+}
+if (loginForm) {
+  loginForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var email = document.getElementById('email').value;
+    var password = document.getElementById('password').value;
+    (0, _login.login)(email, password);
+  });
+}
 },{"./login":"login.js"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';

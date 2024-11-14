@@ -47,3 +47,69 @@ header:hover {
 .alert--error {
   background-color: #eb4d4b;
 }
+.container {
+  padding: 20px;
+}
+
+.breadcrumb {
+  background-color: transparent;
+  padding: 0;
+}
+
+.text-primary {
+  color: #0056b3; /* Adjust this color to match your brand's primary color */
+}
+
+.text-danger {
+  color: #d9534f; /* Color for rent amount */
+}
+
+.card-img-top, .img-fluid {
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.list-unstyled li {
+  font-size: 16px;
+  color: #333;
+}
+
+.btn-success {
+  background-color: #28a745;
+  border: none;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+  color: #fff;
+}
+.error {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 70vh; 
+  max-width: 80rem;
+  text-align: center;
+  margin: 0 auto;
+  padding-top: 5rem; /* Additional padding if needed */
+}
+.error__title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+.error__msg {
+  font-size: 2.5rem;
+  font-weight: 700;
+  max-width: 50rem;
+  margin: 0 auto;
+}

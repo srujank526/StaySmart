@@ -1,0 +1,68 @@
+extends layout
+
+block content
+  .container.mt-5
+    h1.text-center= house.title
+
+    .row.mt-4
+      .col-md-6
+        // Image section with better styling
+        .card
+          img.card-img-top(src=house.image || '/images/default_house.jpg', alt="House Image", class="img-fluid")
+          .card-body
+            p.card-text= house.description
+
+      .col-md-6
+        .card
+          .card-body
+            h2.text-info ₹#{house.rentAmount} / month
+            p.lead= house.description
+            p
+              strong Availability:
+              | #{house.isAvailable ? 'Available' : 'Not Available'}
+            .divider
+            h4 Address
+            p.mb-0 #{house.address.houseNumber} #{house.address.street}
+            p.mb-0 #{house.address.city}, #{house.address.state} #{house.address.zip}
+            p #{house.address.country}
+            
+            // Action buttons like Schedule a visit, Contact etc.
+            .btn-group
+              a.btn.btn-primary(href=`/schedule-visit/${house._id}`, style="margin-right: 8px;") Schedule a Visit
+              a.btn.btn-success(href="tel:+1234567890") Contact
+    
+    .reviews-section.mt-5
+      h3.text-center Customer Reviews
+      .row
+        .col-md-6
+          .card
+            .card-body
+              h5.card-title Reviews
+              p.card-text "This house is perfect for anyone looking for a cozy space."
+              p.card-text.text-muted "5 stars"
+        .col-md-6
+          .card
+            .card-body
+              h5.card-title Reviews
+              p.card-text "Great location and amenities."
+              p.card-text.text-muted "4 stars"
+      
+      // Option to leave a review
+      .row.mt-4
+        .col-md-12
+          .card
+            .card-body
+              h5 Leave a Review
+              form(action="/submit-review" method="POST")
+                .form-group
+                  label(for="review") Your Review
+                  textarea.form-control(id="review" name="review" rows="4" required)
+                .form-group
+                  label(for="rating") Rating
+                  select.form-control(id="rating" name="rating" required)
+                    option(value="1") 1 Star
+                    option(value="2") 2 Stars
+                    option(value="3") 3 Stars
+                    option(value="4") 4 Stars
+                    option(value="5") 5 Stars
+                button.btn.btn-primary.mt-3(type="submit") Submit Review
