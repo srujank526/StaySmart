@@ -1,0 +1,27 @@
+extends layout
+
+block content
+  .container.d-flex.justify-content-center.align-items-center.min-vh-100.signupForm
+    .card(style="width: 400px;")
+      .card-body
+        h2.card-title.text-center.mb-4 Sign Up
+        //- Display error or success messages
+        if alert
+          .alert(class="alert--" + alert.type)= alert.message
+        form.form--signup(action="/users/signup" method="POST")
+          .form-group
+            label(for="name") Name
+            input#name.form-control(type="text" name="name" required placeholder="Enter your name")
+          .form-group
+            label(for="email") Email
+            input#email.form-control(type="email" name="email" required placeholder="Enter your email")
+          .form-group
+            label(for="password") Password
+            input#password.form-control(type="password" name="password" required placeholder="Enter your password")
+          .form-group
+            label(for="passwordConfirm") Confirm Password
+            input#passwordConfirm.form-control(type="password" name="passwordConfirm" required placeholder="Confirm your password")
+          button.btn.btn-primary.btn-block.signUpBtn(type="submit") Sign Up
+          p.text-center.mt-3
+            | Already have an account?
+            a(href="/login") Login

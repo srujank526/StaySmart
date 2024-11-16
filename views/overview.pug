@@ -17,3 +17,12 @@ block content
     .row
       each house in houses
         +houseCard(house)
+
+    //- Conditional block for "Post a House"
+    .mt-5
+      if user
+        include __postHouseForm
+      else
+        .text-center
+          p.text-danger.mt-3 You need to log in to post a house.
+          a.btn.btn-primary.mt-2(href="/login") Login to Continue.

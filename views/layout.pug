@@ -16,12 +16,12 @@ html(lang="en")
       if user
         .btn-group
           - const name = user.name.split(' ')[0]
-          a#loginBtn.btn.btn-primary.mr-2 #{name}
-          a#signupBtn.btn.btn-secondary Logout
+          a.btn.btn-primary.mr-2 #{name}
+          a.logoutBtn.btn.btn-secondary Logout
       else
         .btn-group
           a#loginBtn.btn.btn-primary.mr-2(href="/login") Login
-          a#signupBtn.btn.btn-secondary Signup
+          a#signupBtn.btn.btn-secondary(href="/signup") Signup
 
     //- Main Content
     block content

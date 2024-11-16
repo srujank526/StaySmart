@@ -1,0 +1,34 @@
+.container
+  h2.text-center.mb-4 Post a New House
+  form.postHouseForm#postHouseForm
+    .form-group
+      label(for="title") Title
+      input#title.form-control(type="text" name="title" required placeholder="Enter house title")
+    .form-group
+      label(for="street") Street
+      input#street.form-control(type="text" name="street" required placeholder="Enter street name")
+    .form-group
+      label(for="houseNumber") House Number
+      input#houseNumber.form-control(type="text" name="houseNumber" required placeholder="Enter house number")
+    .form-group
+      label(for="zip") ZIP Code
+      input#zip.form-control(type="text" name="zip" required placeholder="Enter ZIP code")
+    .form-group
+      label(for="city") City
+      input#city.form-control(type="text" name="city" required placeholder="Enter city")
+    .form-group
+      label(for="state") State
+      input#state.form-control(type="text" name="state" required placeholder="Enter state")
+    .form-group
+      label(for="country") Country
+      input#country.form-control(type="text" name="country" required placeholder="Enter country")
+    .form-group
+      label(for="rentAmount") Rent Amount (₹)
+      input#rentAmount.form-control(type="number" name="rentAmount" required placeholder="Enter rent amount")
+    .form-group
+      label(for="description") Description
+      textarea#description.form-control(name="description" rows="4" required placeholder="Enter house description")
+    .form-check
+      input#isAvailable.form-check-input(type="checkbox" name="isAvailable" checked)
+      label.form-check-label(for="isAvailable") Is Available
+    button.btn.btn-success.btn-block(type="submit") Submit House

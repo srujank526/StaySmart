@@ -3,7 +3,6 @@ const dotenv = require('dotenv');
 const app = require('./app');
 dotenv.config({ path: './config.env' });
 
-console.log(process.env.DATABASE)
 mongoose.connect(process.env.DATABASE)
         .then(()=>console.log("connected to DB"))
 

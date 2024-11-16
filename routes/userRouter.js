@@ -6,6 +6,7 @@ const UserRouter = express.Router()
 
 UserRouter.post('/login', authController.login)
 UserRouter.post('/signup', authController.signup)
+UserRouter.get('/logout',authController.logout)
 
 UserRouter.get('/',authController.protect,authController.restrictTo(['admin']),userController.getAllUsers)
             .get('/:id',userController.getUserById)

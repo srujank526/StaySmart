@@ -13,10 +13,11 @@ const signToken = (id) => {
   exports.protect = catchAsync(async (req, res, next) => {
     // 1) Get the token from the headers
     let token;
+    
     if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
       token = req.headers.authorization.split(' ')[1];
     }
-  
+    if(req?.cookies?.jwt) token = req.cookies.jwt
     if (!token) {
       return next(new AppError('You are not logged in! Please log in to get access.', 401));
     }
@@ -91,6 +92,11 @@ exports.signup = catchAsync(async (req, res, next) => {
   // Remove password from output
   newUser.password = undefined;
 
+  res.cookie('jwt', token, {
+    expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000), // 90 days
+    httpOnly: true,
+});
+
   res.status(201).json({
     status: 'success',
     token,
@@ -124,3 +130,11 @@ exports.signup = catchAsync(async (req, res, next) => {
     }
     next();
   };
+  
+  exports.logout = (req,res)=>{
+    res.cookie('jwt', 'loggedout', {
+      expires: new Date(Date.now() - 1000),
+      httpOnly: true
+    });
+    res.status(200).json({ status: 'success' });
+  } 

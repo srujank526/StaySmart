@@ -19,21 +19,20 @@ const getHouseById = catchAsync(async(req,res)=>{
 })
 
 const addHouse = catchAsync(async(req,res)=>{
-    console.log(req.user)
-        const { userId = req.user._id, title,address, rentAmount, description,isAvailable } = req.body;
-        const newHouse = new House({
-            userId,
-            title,
-            address,
-            rentAmount,
-            description,
-            isAvailable    
-        });
-    
-        await newHouse.save()
-        res.status(201).json({
-            status:'success',
-            data: newHouse
+    const { userId = req.user._id, title,address, rentAmount, description,isAvailable } = req.body;
+    const newHouse = new House({
+        userId,
+        title,
+        address,
+        rentAmount,
+        description,
+        isAvailable    
+    });
+
+    await newHouse.save()
+    res.status(201).json({
+        status:'success',
+        data: newHouse
         })
 })
 

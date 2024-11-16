@@ -18,6 +18,12 @@ exports.getOverview = catchAsync(async (req, res, next) => {
       title: 'Log into your account'
     });
   };
+  
+  exports.getSignupForm = (req,res)=>{
+    res.status(200).render('signup', {
+      title: 'Sign in'
+    });
+  }
 
 exports.getHouseDetails = catchAsync(async (req, res, next) => {
   const { houseId } = req.params;  // Retrieve the houseId from URL parameters
