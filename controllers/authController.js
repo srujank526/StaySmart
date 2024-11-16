@@ -65,12 +65,13 @@ exports.login = catchAsync(async(req,res,next)=>{
   
     // 3) If everything ok, send token to client
     const token = signToken(user._id);
-
-    // set token in a cookie
-    res.cookie('jwt', token, {
+    const cookieOptions = {
       expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000), // 90 days
       httpOnly: true,
-  });
+  }
+  if(process.env.NODE_ENV==='production')cookieOptions.secure = true
+    // set token in a cookie
+    res.cookie('jwt', token,cookieOptions );
 
     user.password = undefined
     res.status(200).json({
@@ -92,10 +93,13 @@ exports.signup = catchAsync(async (req, res, next) => {
   // Remove password from output
   newUser.password = undefined;
 
-  res.cookie('jwt', token, {
+  const cookieOptions = {
     expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000), // 90 days
     httpOnly: true,
-});
+}
+if(process.env.NODE_ENV==='production')cookieOptions.secure = true
+  // set token in a cookie
+  res.cookie('jwt', token,cookieOptions );
 
   res.status(201).json({
     status: 'success',
@@ -132,9 +136,12 @@ exports.signup = catchAsync(async (req, res, next) => {
   };
   
   exports.logout = (req,res)=>{
-    res.cookie('jwt', 'loggedout', {
+    const cookieOptions = {
       expires: new Date(Date.now() - 1000),
-      httpOnly: true
-    });
+      httpOnly: true,
+  }
+  if(process.env.NODE_ENV==='production')cookieOptions.secure = true
+    // set token in a cookie
+    res.cookie('jwt', 'loggedout', cookieOptions);
     res.status(200).json({ status: 'success' });
   } 
