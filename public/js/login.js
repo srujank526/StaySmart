@@ -7,7 +7,7 @@ export const login = async (email, password) => {
           email,
           password
         };  
-      const res = await axios.post('http://localhost:8000/api/v1/users/login', data);
+      const res = await axios.post('/api/v1/users/login', data);
 
     if (res.data.status === 'success') {
       showAlert('success', 'Logged in successfully!');
@@ -24,7 +24,7 @@ export const logout = async () => {
   try {
     const res = await axios({
       method: 'GET',
-      url: 'http://localhost:8000/api/v1/users/logout'
+      url: '/api/v1/users/logout'
     });
     if ((res.data.status = 'success')) location.reload(true);
   } catch (err) {
@@ -39,7 +39,7 @@ export const signup = async (name, email, password) => {
           email,
           password
         };  
-      const res = await axios.post('http://localhost:8000/api/v1/users/signup', data);
+      const res = await axios.post('/api/v1/users/signup', data);
 
     if (res.data.status === 'success') {
       showAlert('success', 'signed up successfully!');

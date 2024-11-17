@@ -11,7 +11,7 @@ export const postHouse = async (title, address, rentAmount, description, isAvail
             description, 
             isAvailable
           };
-          const res = await axios.post('http://localhost:8000/api/v1/house/', data);
+          const res = await axios.post('/api/v1/house/', data);
   
       if (res.data.status === 'success') {
         showAlert('success', 'House added succesfully');
