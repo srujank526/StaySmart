@@ -141,3 +141,9 @@ header:hover {
 ::-webkit-scrollbar-button {
   display: none; /* Hides the buttons */
 }
+.card-width{
+  width: 400px;
+}
+.img-height{
+  height: 40px;
+}

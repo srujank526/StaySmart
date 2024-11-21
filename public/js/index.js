@@ -1,3 +1,7 @@
+import $ from 'jquery';
+import Popper from '@popperjs/core';
+import 'bootstrap';
+
 import { login, logout, signup } from './login';
 import { postHouse } from './postHouse';
 
@@ -7,6 +11,7 @@ const loginForm = document.querySelector('.form--login');
 const logoutBtn = document.querySelector('.logoutBtn');
 const signupForm = document.querySelector('.signupForm');
 const postHouseForm = document.querySelector('.postHouseForm');
+const goBackBtn = document.querySelector('.goBackBtn')
 
 if(logoUrl){
     logoUrl.style.cursor = 'pointer';
@@ -15,6 +20,7 @@ if(logoUrl){
 
     })
 }
+
 if(loginForm){
     loginForm.addEventListener('submit', e => {
       e.preventDefault();
@@ -35,6 +41,7 @@ if(signupForm){
         signup(name,email, password);
       });
 }
+
 if(postHouseForm){
     postHouseForm.addEventListener('submit',e=>{
         e.preventDefault();
@@ -55,3 +62,10 @@ if(postHouseForm){
         postHouse(title, address, rentAmount, description, isAvailable )
     })
 }
+
+if (goBackBtn) {
+        goBackBtn.addEventListener("click", (event) => {
+        event.preventDefault();
+        history.back(); 
+        });
+  }

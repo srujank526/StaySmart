@@ -13,7 +13,7 @@ const getAllHouses = catchAsync(async(req,res)=>{
 const getHouseById = catchAsync(async(req,res)=>{
         const house = await House.findById(req.params.id).populate('userId', 'name email');
         if (!house) {
-          return res.status(404).json({ success: false, message: 'House not found' });
+          return next(new AppError('No house found with that ID', 404));
         }
         res.status(200).json({ success: true, data: house });
 })

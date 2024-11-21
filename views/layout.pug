@@ -10,7 +10,7 @@ html(lang="en")
   body
     header.d-flex.justify-content-between.align-items-center.p-3
       .d-flex.align-items-center.logoUrl
-        img(src="/images/logo.png" alt="StaySmart Logo" style="height: 40px;" class="mr-2")
+        img.img-height(src="/images/logo.png" alt="StaySmart Logo" class="mr-2")
         h1.h4.mb-0.text-dark StaySmart
 
       if user
@@ -33,7 +33,4 @@ html(lang="en")
       | ·
       a(href="/privacy") Privacy
 
-    script(src="https://code.jquery.com/jquery-3.5.1.slim.min.js")
-    script(src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js")
-    script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js")
     script(src='/js/bundle.js')
